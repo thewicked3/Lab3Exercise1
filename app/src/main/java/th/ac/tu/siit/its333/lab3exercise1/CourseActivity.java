@@ -1,9 +1,15 @@
 package th.ac.tu.siit.its333.lab3exercise1;
 
+import android.content.Intent;
+import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 
 public class CourseActivity extends ActionBarActivity {
@@ -13,6 +19,26 @@ public class CourseActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course);
     }
+
+    public void retClicked(View v) {
+
+        Intent res = new Intent();
+        EditText etCode = (EditText)findViewById(R.id.etCode);
+        EditText etCr = (EditText)findViewById(R.id.etCR);
+        RadioGroup Grade = (RadioGroup)findViewById(R.id.Grade);
+        RadioButton Rd = (RadioButton)findViewById(Grade.getCheckedRadioButtonId());
+
+        res.putExtra("etCode", etCode.getText().toString());
+        res.putExtra("etCr", Integer.parseInt(etCr.getText().toString()));
+        res.putExtra("Grade",Rd.getText().toString());
+
+
+
+        setResult(RESULT_OK, res);
+
+        finish();
+    }
+
 
 
     @Override
